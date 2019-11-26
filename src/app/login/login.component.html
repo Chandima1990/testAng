@@ -1,0 +1,83 @@
+<div class="ui middle aligned center aligned grid" id="LoginForm">
+    <div class="eight wide column">
+        <div class="ui segment">
+            <h1 class="ui center aligned header">
+                <div class="content">
+                    Sign in
+                    <div class="sub header"></div>
+                </div>
+            </h1>
+            <h1 class="ui left aligned header">
+                <div class="sub header">
+                    Enter your username and password.
+                </div>
+            </h1>
+
+            <div class="ui huge form">
+                <div class="field">
+                    <div class="field">
+                        <input placeholder="you@example.com" [(ngModel)]="email" type="text">
+                    </div>
+                    <div class="field">
+                        <input placeholder="password"  [(ngModel)]="password" type="password">
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="ui huge fluid blue button" (click)="PostLogin()">Submit</div>
+                </div>
+                <h1 class="ui left aligned header">
+                    <div class="sub header">
+                        <div class="ui checkbox">
+                            <input type="checkbox" id="RememberMe">
+                            <label>Remember Me</label>
+                        </div>
+                    </div>
+                </h1>
+                <h1 class="ui center aligned header">
+                    <div class="sub header">
+                        <a href="#">Forgot Password?</a>
+                    </div>
+                </h1>
+
+                <ng-template [ngIf]="status == 200">
+                    <div style="display: block;"  class="ui success message">{{msg}}</div>
+                </ng-template>
+
+                <ng-template  [ngIf]="status == 404">
+                    <div style="display: block;" class="ui error message">{{msg}}</div>
+                </ng-template>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ui middle aligned center aligned grid" id="TFAForm" style="display:none">
+    <div class="eight wide column">
+        <div class="ui segment" id="TFASegment">
+            <h2 style="float:left">2-Step Verification</h2>
+            <div class="ui huge form">
+                <h4 style="float:left" id="TFAMethod"></h4>
+                <div class="field">
+                    <input id="EcryUserName" style="display:none" />
+                    <a href="#" onclick="PostAuthLoginTFAResend()"
+                        style="float:right;margin: calc(2rem -  0.14285714em ) 0em 1rem;">
+                        <h5>No Code?</h5>
+                    </a>
+                    <h5 style="float:left" class="sub header">6-digit Code</h5>
+                    <br />
+                    <div class="field">
+                        <input placeholder="" id="TFACode" type="text">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui huge fluid blue button" id="submitTFABtn" (click)="PostAuthLoginTFA()">Verify</div>
+                </div>
+                <div class="ui error message"></div>
+                <div class="ui success message"></div>
+            </div>
+
+        </div>
+    </div>
+</div>
